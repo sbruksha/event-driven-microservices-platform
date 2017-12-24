@@ -1,0 +1,7 @@
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/auth-server/src/main/java/com/eodessa/auth/service/UserService.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/auth-server/src/main/java/com/eodessa/auth/domain/User.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/auth-server/src/main/java/com/eodessa/auth/repository/UserRepository.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/auth-server/src/main/java/com/eodessa/auth/AuthServerApplication.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/auth-server/src/main/java/com/eodessa/auth/controller/UserController.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/auth-server/src/main/java/com/eodessa/auth/service/security/MongoUserDetailsService.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/auth-server/src/main/java/com/eodessa/auth/service/UserServiceImpl.java

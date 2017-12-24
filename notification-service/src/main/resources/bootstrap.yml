@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: notification-service
+  cloud:
+    config:
+      uri: ${CONFIG_URI:http://config-server:8888}
+      fail-fast: true
+      password: ${CONFIG_SERVICE_PASSWORD}
+      username: user
+encrypt:
+  key: eodessa
+eureka:
+  client:
+    prefer-same-zone-eureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka/}
+    registry-fetch-interval-seconds: 5
+logging:
+  file: target/${spring.application.name}.log

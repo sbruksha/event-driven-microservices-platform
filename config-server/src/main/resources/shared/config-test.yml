@@ -1,0 +1,6 @@
+server:
+  context-path: /test
+  port: 8889
+  
+test: w12345test
+encrypttest: "{cipher}b5e90b26fdf445efd5e8ed79d2306efcbe26aa2c061d3f3fa86404095b09c96e"

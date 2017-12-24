@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    config:
+      uri: ${CONFIG_URI:http://localhost:8888}
+      fail-fast: true
+      password: ${CONFIG_SERVICE_PASSWORD}
+      username: user
+#      retry:
+#        max-attempts: 5
+#      discovery:
+#        enabled: true
+#        service-id: config-server
+logging:
+  file: target/${spring.application.name}.log
+#encrypt:
+#  key: eodessa

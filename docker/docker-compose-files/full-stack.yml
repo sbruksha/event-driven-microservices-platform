@@ -1,0 +1,121 @@
+version: '2'
+networks:
+  prodnetwork:
+    driver: bridge
+
+volumes:
+  registry-stuff:
+    driver: local
+    
+services:
+  rabbitmq:
+    extends:
+      file: extends.yml
+      service: rabbitmq
+  gateway:
+    extends:
+      file: extends.yml
+      service: gateway
+    depends_on:
+      - config-server
+  config-server:
+    extends:
+      file: extends.yml
+      service: config-server
+  eureka-server:
+    extends:
+      file: extends.yml
+      service: eureka-server
+  auth-server:
+    extends:
+      file: extends.yml
+      service: auth-server
+    depends_on:
+      - config-server
+  auth-mongodb:
+    extends:
+      file: extends.yml
+      service: auth-mongodb
+  account-service:
+    extends:
+      file: extends.yml
+      service: account-service
+    depends_on:
+      - config-server
+      - fluentd
+    links:
+      - fluentd
+  account-mongodb:
+    extends:
+      file: extends.yml
+      service: account-mongodb
+  config-test:
+    extends:
+      file: extends.yml
+      service: config-test
+    depends_on:
+      - config-server
+      - eureka-server
+  monitoring:
+    extends:
+      file: extends.yml
+      service: monitoring
+    depends_on:
+      - config-server
+  notification-service:
+    extends:
+      file: extends.yml
+      service: notification-service
+    depends_on:
+      - config-server
+  notification-mongodb:
+    extends:
+      file: extends.yml
+      service: notification-mongodb
+  store-service:
+    extends:
+      file: extends.yml
+      service: store-service
+    depends_on:
+      - config-server
+      - fluentd
+    links:
+      - fluentd
+  store-mongodb:
+    extends:
+      file: extends.yml
+      service: store-mongodb
+  appointment-service:
+    extends:
+      file: extends.yml
+      service: appointment-service
+    depends_on:
+      - config-server
+      - fluentd
+    links:
+      - fluentd
+  appointment-mongodb:
+    extends:
+      file: extends.yml
+      service: appointment-mongodb
+  fluentd:
+    extends:
+      file: extends.yml
+      service: fluentd
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+  elasticsearch:
+    extends:
+      file: extends.yml
+      service: elasticsearch
+  kibana:
+    extends:
+      file: extends.yml
+      service: kibana
+    depends_on:
+      - elasticsearch
+    links:
+      - elasticsearch
+  

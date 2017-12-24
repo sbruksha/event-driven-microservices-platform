@@ -1,0 +1,15 @@
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/domain/Account.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/domain/TimePeriod.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/domain/Currency.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/domain/User.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/repository/AccountRepository.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/client/AuthServiceClient.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/service/security/CustomUserInfoTokenServices.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/controller/ErrorHandler.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/domain/Item.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/AccountApplication.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/service/AccountServiceImpl.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/domain/Saving.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/service/AccountService.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/controller/AccountController.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/account-service/src/main/java/com/eodessa/account/client/StatisticsServiceClient.java

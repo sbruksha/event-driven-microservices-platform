@@ -1,0 +1,31 @@
+---
+server:
+  port: 8888
+logging:
+  path: /opt/logs
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: ${CONFIG_SERVICE_PASSWORD}
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared
+#        git:
+#          uri: https://github.com/sbruksha/event-driven-microservices-config
+#          #username: user
+#          #password: pass
+#          search-paths:
+#          - 'catalog*'
+        encrypt:
+          enabled: false
+  application:
+    name: config-server
+  profiles:
+     active: native         
+          
+            

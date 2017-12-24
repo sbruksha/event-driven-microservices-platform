@@ -1,0 +1,9 @@
+com/eodessa/auth/domain/User.class
+com/eodessa/auth/service/UserService.class
+com/eodessa/auth/repository/UserRepository.class
+com/eodessa/auth/AuthServerApplication.class
+com/eodessa/auth/AuthServerApplication$OAuth2AuthorizationConfig.class
+com/eodessa/auth/AuthServerApplication$webSecurityConfig.class
+com/eodessa/auth/service/UserServiceImpl.class
+com/eodessa/auth/service/security/MongoUserDetailsService.class
+com/eodessa/auth/controller/UserController.class

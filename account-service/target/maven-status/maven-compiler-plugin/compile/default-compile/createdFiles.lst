@@ -1,0 +1,15 @@
+com/eodessa/account/controller/AccountController.class
+com/eodessa/account/service/AccountServiceImpl.class
+com/eodessa/account/client/StatisticsServiceClient.class
+com/eodessa/account/domain/TimePeriod.class
+com/eodessa/account/domain/Currency.class
+com/eodessa/account/AccountApplication.class
+com/eodessa/account/domain/User.class
+com/eodessa/account/service/security/CustomUserInfoTokenServices.class
+com/eodessa/account/client/AuthServiceClient.class
+com/eodessa/account/domain/Saving.class
+com/eodessa/account/repository/AccountRepository.class
+com/eodessa/account/domain/Item.class
+com/eodessa/account/service/AccountService.class
+com/eodessa/account/domain/Account.class
+com/eodessa/account/controller/ErrorHandler.class

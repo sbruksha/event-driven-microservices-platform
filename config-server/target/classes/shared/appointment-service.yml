@@ -1,0 +1,21 @@
+security:
+  oauth2:
+    client:
+      clientId: appointment-service
+      clientSecret: ${APPOINTMENT_SERVICE_PASSWORD}
+      accessTokenUri: http://auth-server:5000/uaa/oauth/token
+      grant-type: client_credentials
+      scope: server
+
+spring:
+  data:
+    mongodb:
+      host: appointment-mongodb
+      username: user
+      password: ${MONGODB_PASSWORD}
+      database: eodessa
+      port: 27017
+
+server:
+  context-path: /appointments
+  port: 6200

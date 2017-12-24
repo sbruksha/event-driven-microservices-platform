@@ -1,0 +1,334 @@
+version: '2'
+networks:
+  prodnetwork:
+    driver: bridge
+
+volumes:
+  registry-stuff:
+    driver: local
+    
+services:
+    rabbitmq:
+        container_name: rabbitmq
+        image: rabbitmq:3-management
+        restart: always
+        ports:
+          - 15672:15672
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/rabbitmq/:/var/log
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    config-server:
+        container_name: config-server
+        image: eodessa/config-server:latest
+        ports:
+          - "8888:8888"
+        environment:
+          CONFIG_SERVICE_PASSWORD: eodessa
+          ENCRYPT_KEY: eodessa
+        expose:
+          - "8888"
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/edmp-config-server/:/var/log
+    gateway:
+        container_name: gateway
+        environment:
+          CONFIG_SERVICE_PASSWORD: eodessa
+          CONFIG_URI: http://config-server:8888
+        image: eodessa/gateway:latest
+        restart: always
+        ports:
+          - 80:4000
+        networks:
+          - prodnetwork
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    eureka-server:
+        container_name: eureka-server
+        image: eodessa/eureka-server:latest
+        ports:
+          - "8761:8761" # the first port number is the host port.  Don't change the second / container port
+        environment:
+          CONFIG_URI: http://config-server:8888
+          EUREKA_URI: http://eureka-server:8761/eureka
+        expose:
+          - "8761"
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/eureka-server/:/var/log
+    auth-server:
+        container_name: auth-server
+        environment:
+          CONFIG_URI: http://config-server:8888
+          CONFIG_SERVICE_PASSWORD: eodessa
+          NOTIFICATION_SERVICE_PASSWORD: eodessa
+          STATISTICS_SERVICE_PASSWORD: eodessa
+          ACCOUNT_SERVICE_PASSWORD: eodessa
+          MONGODB_PASSWORD: eodessa
+        image: eodessa/auth-server:latest
+        restart: always
+        ports:
+          - "5000:5000"
+        expose:
+          - "5000"
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/auth-server/:/var/log
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    auth-mongodb:
+        container_name: auth-mongodb
+        environment:
+          MONGODB_PASSWORD: eodessa
+        image: eodessa/mongodb:latest
+        restart: always
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/auth-mongodb/:/var/log
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    config-test:
+        container_name: config-test
+        image: eodessa/config-test:latest
+        ports:
+          - "8889:8889" # the first port number is the host port.  Don't change the second / container port
+        environment:
+          CONFIG_URI: http://config-server:8888
+          EUREKA_URI: http://eureka-server:8761/eureka
+          CONFIG_SERVICE_PASSWORD: eodessa
+        restart: always
+        expose:
+          - "8889"
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/config-test/:/var/log
+    monitoring:
+        container_name: monitoring
+        environment:
+          CONFIG_SERVICE_PASSWORD: eodessa
+          CONFIG_URI: http://config-server:8888
+        image: eodessa/monitoring:latest
+        restart: always
+        expose:
+          - "8989"
+          - "8080"
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/monitoring/:/var/log
+        ports:
+          - "9000:8080"
+          - "8989:8989"
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    account-service:
+        container_name: account-service
+        environment:
+          CONFIG_SERVICE_PASSWORD: eodessa
+          ACCOUNT_SERVICE_PASSWORD: eodessa
+          MONGODB_PASSWORD: eodessa
+          CONFIG_URI: http://config-server:8888
+        image: eodessa/account-service:latest
+        restart: always
+        expose:
+          - "6000"
+        networks:
+          - prodnetwork
+        #volumes:
+        #  - ./../logs/account-service/:/var/log
+        ports:
+          - "6000:6000"
+        logging:
+          driver: "fluentd"
+          options:
+            fluentd-address: 0.0.0.0:24224 #sometimes fluentd
+            tag: account.{{.FullID}}
+    account-mongodb:
+        container_name: account-mongodb
+        environment:
+          MONGODB_PASSWORD: eodessa
+        image: eodessa/mongodb:latest
+        restart: always
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/account-mongodb/:/var/log
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    notification-service:
+        container_name: notification-service
+        environment:
+          CONFIG_SERVICE_PASSWORD: eodessa
+          MONGODB_PASSWORD: eodessa
+          NOTIFICATION_SERVICE_PASSWORD: eodessa
+          EUREKA_URI: http://eureka-server:8761/eureka
+          CONFIG_URI: http://config-server:8888
+        image: eodessa/notification-service:latest
+        restart: always
+        expose:
+          - "8000"
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/notification-service/:/var/log
+        ports:
+          - "8000:8000"
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    notification-mongodb:
+        container_name: notification-mongodb
+        image: eodessa/mongodb:latest
+        restart: always
+        environment:
+          MONGODB_PASSWORD: eodessa
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/notification-mongodb/:/var/log
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"   
+    fluentd:
+        container_name: fluentd
+        image: eodessa/fluentd:latest
+        #build: ./../../fluentd
+        volumes:
+          - ./../../fluentd/fluent.conf:/fluentd/etc/fluent.conf
+        networks:
+          - prodnetwork
+        ports:
+          - "24224:24224"
+          - "24224:24224/udp"
+        logging:
+          driver: "json-file"
+          options:
+            max-size: 100m
+            max-file: "5"
+        
+    elasticsearch:
+        container_name: elasticsearch
+        image: eodessa/elasticsearch:latest
+        #image: elasticsearch:latest
+        #volumes:
+        #  - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+        ports:
+          - "9200:9200"
+          - "9300:9300"
+        environment:
+          ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+          ELASTIC_USERNAME: "elastic"
+          ELASTIC_PASSWORD: "changeme"
+          http.cors.enabled: "true"
+          http.cors.allow-origin: "*"
+        expose:
+          - 9200
+        networks:
+          - prodnetwork
+    kibana:
+        container_name: kibana
+        #image: docker.elastic.co/kibana/kibana:5.5.3
+        image: eodessa/kibana:latest
+        #build: ./../../kibana
+        #volumes:
+        #  - ./../../kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+        environment:
+          SERVER_NAME: kibana
+          ELASTICSEARCH_URL: http://elasticsearch:9200
+        networks:
+          - prodnetwork
+        ports:
+          - "5601:5601"
+    store-service:
+        container_name: store-service
+        environment:
+          CONFIG_SERVICE_PASSWORD: eodessa
+          STORE_SERVICE_PASSWORD: eodessa
+          MONGODB_PASSWORD: eodessa
+          CONFIG_URI: http://config-server:8888
+        image: eodessa/store-service:latest
+        restart: always
+        expose:
+          - "6100"
+        networks:
+          - prodnetwork
+        ports:
+          - "6100:6100"
+        #logging:
+        #  driver: "fluentd"
+        #  options:
+        #    fluentd-address: 0.0.0.0:24224 #sometimes fluentd
+        #    tag: store.{{.FullID}}
+    store-mongodb:
+        container_name: store-mongodb
+        environment:
+          INIT_DUMP: store-service-dump.js
+          MONGODB_PASSWORD: eodessa
+        image: eodessa/mongodb:latest
+        restart: always
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/store-mongodb/:/var/log
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    appointment-service:
+        container_name: appointment-service
+        environment:
+          CONFIG_SERVICE_PASSWORD: eodessa
+          APPOINTMENT_SERVICE_PASSWORD: eodessa
+          MONGODB_PASSWORD: eodessa
+          CONFIG_URI: http://config-server:8888
+        image: eodessa/appointment-service:latest
+        restart: always
+        expose:
+          - "6200"
+        networks:
+          - prodnetwork
+        ports:
+          - "6200:6200"
+        #logging:
+        #  driver: "fluentd"
+        #  options:
+        #    fluentd-address: 0.0.0.0:24224 #sometimes fluentd
+        #    tag: appointment.{{.FullID}}
+    appointment-mongodb:
+        container_name: appointment-mongodb
+        environment:
+          INIT_DUMP: appointment-service-dump.js
+          MONGODB_PASSWORD: eodessa
+        image: eodessa/mongodb:latest
+        restart: always
+        networks:
+          - prodnetwork
+        volumes:
+          - ./../logs/appointment-mongodb/:/var/log
+        logging:
+          options:
+            max-size: "10m"
+            max-file: "10"
+    

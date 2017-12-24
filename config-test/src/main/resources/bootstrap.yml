@@ -1,0 +1,22 @@
+server:
+  port: 8889
+spring:
+  application:
+    name: config-test
+  cloud:
+    config:
+      uri: ${CONFIG_URI:http://config-server:8888}
+      fail-fast: true
+      username: user
+      password: ${CONFIG_SERVICE_PASSWORD}
+#      retry:
+#        max-attempts: 5
+#      discovery:
+#        enabled: true
+#        service-id: config-server
+logging:
+  file: target/${spring.application.name}.log
+encrypt:
+  key: eodessa
+
+  
