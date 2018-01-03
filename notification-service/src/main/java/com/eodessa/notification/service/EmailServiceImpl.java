@@ -1,9 +1,13 @@
 package com.eodessa.notification.service;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -31,7 +35,14 @@ public class EmailServiceImpl implements EmailService {
 	@Autowired
 	private Environment env;
 
+	private void defaultSend(NotificationType type, Recipient recipient, String attachment) {
+
+	}
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
+	@HystrixCommand(fallbackMethod = "defaultSend")
 	public void send(NotificationType type, Recipient recipient, String attachment) throws MessagingException, IOException {
 
 		final String subject = env.getProperty(type.getSubject());

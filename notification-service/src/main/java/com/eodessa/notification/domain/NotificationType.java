@@ -2,7 +2,7 @@ package com.eodessa.notification.domain;
 
 public enum NotificationType {
 
-	BACKUP("backup.email.subject", "backup.email.text", "backup.email.attachment"),
+	WELCOME("welcome.email.subject", "welcome.email.text", null),
 	REMIND("remind.email.subject", "remind.email.text", null);
 
 	private String subject;

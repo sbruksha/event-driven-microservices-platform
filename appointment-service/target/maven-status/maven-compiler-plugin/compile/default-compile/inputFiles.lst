@@ -1,6 +1,7 @@
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/appointment-service/src/main/java/com/eodessa/appointment/repository/AppointmentRepository.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/appointment-service/src/main/java/com/eodessa/appointment/service/AppointmentService.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/appointment-service/src/main/java/com/eodessa/appointment/service/security/CustomUserInfoTokenServices.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/appointment-service/src/main/java/com/eodessa/appointment/repository/ServiceRepository.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/appointment-service/src/main/java/com/eodessa/appointment/service/AppointmentServiceImpl.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/appointment-service/src/main/java/com/eodessa/appointment/AppointmentApplication.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/appointment-service/src/main/java/com/eodessa/appointment/domain/Appointment.java

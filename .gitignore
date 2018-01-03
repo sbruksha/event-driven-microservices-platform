@@ -56,5 +56,5 @@ fabric.properties
 .idea/
 /build/
 /output/
-/target/
+target/
 /.classpath

@@ -14,17 +14,25 @@ server:
 remind:
   cron: 0 0 0 * * *
   email:
-    text: "Hey, {0}! We''ve missed you here. It''s time to check your budget statistics.\r\n\r\nCheers,\r\nteam"
+    text: "Hey, {0}! We''ve missed you here. \r\n\r\nCheers,\r\nteam"
     subject: Friendly reminder
 
-backup:
+welcome:
   cron: 0 0 12 * * *
   email:
-    text: "Howdy, {0}. Your account backup is ready.\r\n\r\nCheers,\r\nteam"
+    text: "Hello, {0}. Thank you for creating an account.\r\n\r\nCheers,\r\nteam"
     subject: Account backup
-    attachment: backup.json
 
 spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: appointmentcreated
+#  rabbitmq:
+#    broker-url: tcp://127.0.0.1:5672
+#    username:
+#    password:
   data:
     mongodb:
       host: notification-mongodb
@@ -33,10 +41,10 @@ spring:
       database: eodessa
       port: 27017
   mail:
-    host: 209.133.206.98
+    host: 127.0.0.1
     port: 25
-    username: "{cipher}bbe1bd0d24e54d3e319a087ab38f6e7e5e4d3ef26c2983237e25f2ba8d8f091740d3f0dd9a76425c072d20f2c0a07a6f"
-    password: "{cipher}e448ad298784b023264652cf39cd4e85173d792609b33d17a4414a1b8788ca9b"
+    username: "{cipher}1bbe1bd0d24e54d3e319a087ab38f6e7e5e4d3ef26c2983237e25f2ba8d8f091740d3f0dd9a76425c072d20f2c0a07a6f"
+    password: "{cipher}1e448ad298784b023264652cf39cd4e85173d792609b33d17a4414a1b8788ca9b"
     properties:
       mail:
         smtp:

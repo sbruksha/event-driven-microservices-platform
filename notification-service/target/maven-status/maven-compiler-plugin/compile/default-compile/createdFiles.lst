@@ -3,10 +3,10 @@ com/eodessa/notification/service/RecipientService.class
 com/eodessa/notification/NotificationServiceApplication$CustomConversionsConfig.class
 com/eodessa/notification/client/AccountServiceClient.class
 com/eodessa/notification/NotificationServiceApplication.class
-com/eodessa/notification/controller/RecipientController.class
 com/eodessa/notification/domain/NotificationType.class
 com/eodessa/notification/service/NotificationServiceImpl.class
 com/eodessa/notification/domain/NotificationSettings.class
+com/eodessa/notification/controller/NotificationController.class
 com/eodessa/notification/service/RecipientServiceImpl$1.class
 com/eodessa/notification/repository/converter/FrequencyWriterConverter.class
 com/eodessa/notification/service/NotificationService.class

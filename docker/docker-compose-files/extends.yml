@@ -164,6 +164,7 @@ services:
     account-mongodb:
         container_name: account-mongodb
         environment:
+          INIT_DUMP: account-service-dump.js
           MONGODB_PASSWORD: eodessa
         image: eodessa/mongodb:latest
         restart: always

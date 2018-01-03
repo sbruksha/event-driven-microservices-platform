@@ -14,17 +14,25 @@ server:
 remind:
   cron: 0 0 0 * * *
   email:
-    text: "Hey, {0}! We''ve missed you here. It''s time to check your budget statistics.\r\n\r\nCheers,\r\nteam"
+    text: "Hey, {0}! We''ve missed you here. \r\n\r\nCheers,\r\nteam"
     subject: Friendly reminder
 
-backup:
+welcome:
   cron: 0 0 12 * * *
   email:
-    text: "Howdy, {0}. Your account backup is ready.\r\n\r\nCheers,\r\nteam"
+    text: "Hello, {0}. Thank you for creating an account.\r\n\r\nCheers,\r\nteam"
     subject: Account backup
-    attachment: backup.json
 
 spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: appointmentcreated
+#  rabbitmq:
+#    broker-url: tcp://127.0.0.1:5672
+#    username:
+#    password:
   data:
     mongodb:
       host: notification-mongodb

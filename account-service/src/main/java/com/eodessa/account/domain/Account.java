@@ -20,14 +20,8 @@ public class Account {
 	private Date lastSeen;
 
 	@Valid
-	private List<Item> incomes;
-
-	@Valid
-	private List<Item> expenses;
-
-	@Valid
 	@NotNull
-	private Saving saving;
+	private String email;
 
 	@Length(min = 0, max = 20_000)
 	private String note;
@@ -48,28 +42,12 @@ public class Account {
 		this.lastSeen = lastSeen;
 	}
 
-	public List<Item> getIncomes() {
-		return incomes;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setIncomes(List<Item> incomes) {
-		this.incomes = incomes;
-	}
-
-	public List<Item> getExpenses() {
-		return expenses;
-	}
-
-	public void setExpenses(List<Item> expenses) {
-		this.expenses = expenses;
-	}
-
-	public Saving getSaving() {
-		return saving;
-	}
-
-	public void setSaving(Saving saving) {
-		this.saving = saving;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getNote() {

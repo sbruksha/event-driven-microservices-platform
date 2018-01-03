@@ -27,6 +27,10 @@ if [ "$build_images" == "y" ]; then
 	cd ./../eureka-server/
 	sh ./build_image.sh
 	
+	echo "Generating statistics-server image..."
+	cd ./../statistics-server/
+	sh ./build_image.sh
+	
 	echo "Generating monitoring image..."
 	cd ./../monitoring/
 	sh ./build_image.sh

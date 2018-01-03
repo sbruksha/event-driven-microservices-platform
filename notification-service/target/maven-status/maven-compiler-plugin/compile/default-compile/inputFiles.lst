@@ -6,11 +6,11 @@
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/repository/RecipientRepository.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/service/NotificationService.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/service/RecipientService.java
+/Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/controller/NotificationController.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/domain/Frequency.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/NotificationServiceApplication.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/service/NotificationServiceImpl.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/domain/Recipient.java
-/Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/controller/RecipientController.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/domain/NotificationType.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/client/AccountServiceClient.java
 /Users/z002p1k/MyProjects/event-driven-microservices-platform/notification-service/src/main/java/com/eodessa/notification/repository/converter/FrequencyWriterConverter.java

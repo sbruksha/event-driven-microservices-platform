@@ -8,6 +8,11 @@ security:
       scope: server
 
 spring:
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: appointmentcreated
   data:
     mongodb:
       host: appointment-mongodb

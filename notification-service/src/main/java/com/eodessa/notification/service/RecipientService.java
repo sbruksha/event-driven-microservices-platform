@@ -16,6 +16,22 @@ public interface RecipientService {
 	Recipient findByAccountName(String accountName);
 
 	/**
+	 * sendWelcomeEmail by account name
+	 *
+	 * @param accountName
+	 * @return success flag
+	 */
+	boolean sendWelcomeEmail(String accountName);
+
+	/**
+	 * sendReminderEmail by appointment
+	 *
+	 * @param appointmentId
+	 * @return success flag
+	 */
+	void sendReminderEmail(String appointmentId);
+
+	/**
 	 * Finds recipients, which are ready to be notified
 	 * at the moment
 	 *
